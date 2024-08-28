@@ -9,19 +9,9 @@ import (
 )
 
 func Add(w http.ResponseWriter, r *http.Request) {
-	if r.Method != "POST" {
-		http.Error(w, "Method Not Allowed", http.StatusMethodNotAllowed)
-		return
-	}
-
 	var Data structs.ResponseData
 
-	err := json.NewDecoder(r.Body).Decode(&Data)
-
-	if err != nil {
-		http.Error(w, "Bad Request", http.StatusBadRequest)
-		return
-	}
+	json.NewDecoder(r.Body).Decode(&Data)
 	result := strconv.Itoa(Data.Number1 + Data.Number2)
 
 	fmt.Fprintf(w, "%s\n", result)
