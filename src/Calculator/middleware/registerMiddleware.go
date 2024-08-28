@@ -14,5 +14,5 @@ func RegisterMiddleware(mux *http.ServeMux) http.Handler {
 		wrappedHandler = middlewareToAdd(wrappedHandler)
 	}
 
-	return wrappedHandler
+	return CustomMiddleware(wrappedHandler)
 }
