@@ -6,6 +6,7 @@ import (
 
 func RegisterMiddleware(mux *http.ServeMux) http.Handler {
 	middlewares := [...]func(http.Handler) http.Handler{
+		Logger,
 		JsonParseMiddleware,
 		CheckMethodMiddleware,
 	}
