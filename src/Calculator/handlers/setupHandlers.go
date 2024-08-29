@@ -33,6 +33,15 @@ var Requirements = map[string]structs.EndpointRequirements{
 	},
 }
 
+func GetEndpoints() []string {
+	endpoints := make([]string, 0, len(Requirements))
+	for key := range Requirements {
+		endpoints = append(endpoints, key)
+	}
+
+	return endpoints
+}
+
 func GetRequirements(endpoint string) []string {
 	return Requirements[endpoint].Required
 }
