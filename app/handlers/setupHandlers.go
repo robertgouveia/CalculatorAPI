@@ -1,6 +1,7 @@
 package handlers
 
 import (
+	customMiddleware "Calculator/handlers/middleware"
 	"Calculator/structs"
 	"net/http"
 )
@@ -22,9 +23,11 @@ var Requirements = map[string]structs.EndpointRequirements{
 		CustomMiddleware: []func(http.Handler) http.Handler{},
 	},
 	"/divide": {
-		Handler:          Divide,
-		Required:         []string{"Number1", "Number2"},
-		CustomMiddleware: []func(http.Handler) http.Handler{},
+		Handler:  Divide,
+		Required: []string{"Number1", "Number2"},
+		CustomMiddleware: []func(http.Handler) http.Handler{
+			customMiddleware.DivideByZero,
+		},
 	},
 	"/sum": {
 		Handler:          Sum,
